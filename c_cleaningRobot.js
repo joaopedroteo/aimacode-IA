@@ -274,10 +274,10 @@ function makeReaderControlledDiagram() {
 
     let buttons = [
         makeButton('LEFT', 'Move left', 0 ),
-        makeButton('SUCK', 'Vacuum', 110),
-        makeButton('RIGHT', 'Move right', 220),
-        makeButton('DOWN', 'Move down', 330),
-        makeButton('UP', 'Move up', 440),
+        makeButton('RIGHT', 'Move right', 110),
+        makeButton('DOWN', 'Move down', 220),
+        makeButton('UP', 'Move up', 330),
+        makeButton('SUCK', 'Vacuum', 440),
     ];
 
     function updateButtons() {
