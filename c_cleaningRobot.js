@@ -14,13 +14,27 @@ const colors = {
     actionHighlight: 'hsl(150,50%,80%)'
 };
 
+function calcY(floorNumber) {
+	if (floorNumber < 2) {
+		return 225;
+	}
+	return 425;
+}
+
+function calcX(floorNumber) {
+	if (floorNumber < 2)
+		return 10 + floorNumber * 300;
+	return 10 + (floorNumber -2) * 300;
+}
 
 /* Create a diagram object that includes the world (model) and the svg
    elements (view) */
 function makeDiagram(selector) {
     let diagram = {}, world = new World(4);
     diagram.world = world;
-    diagram.xPosition = (floorNumber) => 10 + floorNumber * 600 / diagram.world.floors.length;
+    diagram.xPosition = (floorNumber) => calcX(floorNumber);
+    diagram.yPosition = (floorNumber) => calcy(floorNumber);
+    
     
     diagram.root = d3.select(selector);
     diagram.robot = diagram.root.append('g')
@@ -44,8 +58,8 @@ function makeDiagram(selector) {
         diagram.floors[floorNumber] =
             diagram.root.append('rect')
             .attr('class', 'clean floor') // for css
-            .attr('x', diagram.xPosition(floorNumber))
-            .attr('y', '225')
+            .attr('x', calcX(floorNumber))
+            .attr('y', calcY(floorNumber))
             .attr('width', SIZE)
             .attr('height', SIZE/4)
             .attr('stroke', 'black')
@@ -69,7 +83,11 @@ function renderWorld(diagram) {
     for (let floorNumber = 0; floorNumber < diagram.world.floors.length; floorNumber++) {
         diagram.floors[floorNumber].attr('class', diagram.world.floors[floorNumber].dirty? 'dirty floor' : 'clean floor');
     }
-    diagram.robot.style('transform', `translate(${diagram.xPosition(diagram.world.location)}px,100px)`);
+    if(diagram.world.location < 2) {
+		diagram.robot.style('transform', `translate(${diagram.xPosition(diagram.world.location)}px,100px)`);
+	} else {
+		diagram.robot.style('transform', `translate(${diagram.xPosition(diagram.world.location)}px,300px)`);
+	}
 }
 
 function renderAgentPercept(diagram, dirty) {

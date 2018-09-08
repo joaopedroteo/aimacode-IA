@@ -19,16 +19,16 @@ class World {
             this.floors[this.location].dirty = false;
             break;
         case 'LEFT':
-            this.location = 0;
+            this.location < 2 ? this.location = 0 : this.location = 2;
             break;
         case 'RIGHT':
-            this.location = 1;
+			this.location < 2 ? this.location = 1 : this.location = 3;
             break;
         case 'DOWN':
-        	this.location = 2;
+        	this.location % 2 == 0 ? this.location = 2 : this.location = 3;
         	break;
         case 'UP':
-        	this.location = 3;
+        	this.location % 2 == 0 ? this.location = 0 : this.location = 1;
         	break;
         }
 
@@ -41,8 +41,8 @@ class World {
 function reflexVacuumAgent(world) {
     if (world.floors[world.location].dirty) { return 'SUCK'; }
     else if (world.location == 0)           { return 'RIGHT'; }
-    else if (world.location == 1)           { return 'LEFT'; }
-    else if (world.location == 2)           { return 'DOWN'; }
+    else if (world.location == 1)           { return 'DOWN'; }
+    else if (world.location == 2)           { return 'LEFT'; }
     else if (world.location == 3)           { return 'UP'; }
 }
 
