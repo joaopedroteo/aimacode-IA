@@ -27,14 +27,111 @@
         <h1>Intelligent Agents</h1>
 
         <h3>Evaluating multiple agents</h3>
-
-          <div id="meu-diagrama">
-            <div class="buttons" style="position:relative"></div>
-            <svg width="1000" height="500"></svg>
-          </div>
+        <div id="meu-diagrama">
+          <table class="agent-actions">
+            <thead>
+                <tr>
+                    <th rowspan="2" valign="bottom">Percept</th>
+                    <th colspan="4">Position</th>
+                </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th></th>
+                <th data-input="left-up" style="background-color: rgb(255, 255, 204);">Left-Up</th>
+                <th data-input="right-up" style="background-color: rgb(255, 255, 204);">Right-up</th>
+                <th data-input="left-down" style="background-color: rgb(255, 255, 204);">Left-Down</th>
+                <th data-input="right-down" style="background-color: rgb(255, 255, 204);">Right-Down</th>
+              </tr>
+            
+            </tbody>
+            <tbody>
+              <tr>
+                <th data-input="clean" style="background-color: rgb(255, 255, 204);">Clean</th>
+                <td data-action="left-up-clean" style="padding: 5px; background-color: rgb(255, 255, 255);">
+                  <select class="custom-select">
+                    <option value="LEFT">LEFT</option>
+                    <option value="RIGHT" selected="">RIGHT</option>
+                    <option value="UP">UP</option>
+                    <option value="DOWN">DOWN</option>
+                    <option value="SUCK">SUCK</option>
+                  </select>
+                </td>
+                <td data-action="right-up-clean" style="padding: 5px; background-color: rgb(255, 255, 255);">
+                  <select class="custom-select">
+                    <option value="LEFT">LEFT</option>
+                    <option value="RIGHT">RIGHT</option>
+                    <option value="UP">UP</option>
+                    <option value="DOWN" selected="">DOWN</option>
+                    <option value="SUCK">SUCK</option>
+                  </select>
+                </td>
+                <td data-action="left-down-clean" style="padding: 5px; background-color: rgb(255, 255, 255);">
+                    <select class="custom-select">
+                      <option value="LEFT">LEFT</option>
+                      <option value="RIGHT">RIGHT</option>
+                      <option value="UP" selected="">UP</option>
+                      <option value="DOWN">DOWN</option>
+                      <option value="SUCK">SUCK</option>
+                    </select>
+                  </td>
+                  <td data-action="right-down-clean" style="padding: 5px; background-color: rgb(255, 255, 255);">
+                      <select class="custom-select">
+                        <option value="LEFT" selected="">LEFT</option>
+                        <option value="RIGHT">RIGHT</option>
+                        <option value="UP">UP</option>
+                        <option value="DOWN">DOWN</option>
+                        <option value="SUCK">SUCK</option>
+                      </select>
+                    </td>
+              </tr>
+                <tr>
+                  <th data-input="dirty" style="background-color: rgb(255, 255, 204);">Dirty</th>
+                  <td data-action="left-up-dirty" style="padding: 5px; background-color: rgb(255, 255, 255);">
+                    <select class="custom-select">
+                      <option value="LEFT">LEFT</option>
+                      <option value="RIGHT">RIGHT</option>
+                      <option value="UP">UP</option>
+                      <option value="DOWN">DOWN</option>
+                      <option value="SUCK" selected="">SUCK</option>
+                    </select>
+                  </td>
+                  <td data-action="right-up-dirty" style="padding: 5px; background-color: rgb(255, 255, 255);">
+                    <select class="custom-select">
+                      <option value="LEFT">LEFT</option>
+                      <option value="RIGHT">RIGHT</option>
+                      <option value="UP">UP</option>
+                      <option value="DOWN">DOWN</option>
+                      <option value="SUCK" selected="">SUCK</option>
+                    </select>
+                  </td>
+                  <td data-action="left-down-dirty" style="padding: 5px; background-color: rgb(255, 255, 255);">
+                      <select class="custom-select">
+                        <option value="LEFT">LEFT</option>
+                        <option value="RIGHT">RIGHT</option>
+                        <option value="UP">UP</option>
+                        <option value="DOWN">DOWN</option>
+                        <option value="SUCK" selected="">SUCK</option>
+                      </select>
+                    </td>
+                    <td data-action="right-down-dirty" style="padding: 5px; background-color: rgb(255, 255, 255);">
+                        <select class="custom-select">
+                          <option value="LEFT">LEFT</option>
+                          <option value="RIGHT">RIGHT</option>
+                          <option value="UP">UP</option>
+                          <option value="DOWN">DOWN</option>
+                          <option value="SUCK" selected="">SUCK</option>
+                        </select>
+                      </td>
+                </tr>
+            </tbody>
+          </table>
+          <div class="buttons" style="position:relative"></div>
+          <svg width="1000" height="500"></svg>
+        </div>
       </div>
     </div>
-
+    
     <script type="text/javascript" src="./cleaningRobot.js"></script>
     <script type="text/javascript" src="./c_cleaningRobot.js"></script>
   </body>
