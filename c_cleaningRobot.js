@@ -253,61 +253,19 @@ function makeTableControlledDiagram() {
 
 function makeReaderControlledDiagram() {
     let diagram = makeDiagram('#meu-diagrama svg');
-    let nextAction = null;
-    let animating = false; // either false or a setTimeout intervalID
-
-    function makeButton(action, label, x) {
-        let button = d3.select('#meu-diagrama .buttons')
-            .append('button')
-            .attr('class', 'btn btn-default')
-            .style('position', 'absolute')
-            .style('left', x + 'px')
-            .style('width', '100px')
-            .text(label)
-            .on('click', () => {
-                setAction(action);
-                updateButtons();
-            });
-        button.action = action;
-        return button;
-    }
-
-    let buttons = [
-        makeButton('LEFT', 'Move left', 0 ),
-        makeButton('RIGHT', 'Move right', 110),
-        makeButton('DOWN', 'Move down', 220),
-        makeButton('UP', 'Move up', 330),
-        makeButton('SUCK', 'Vacuum', 440),
-    ];
-
-    function updateButtons() {
-        for (let button of buttons) {
-            button.classed('btn-warning', button.action == nextAction);
-        }
-    }
-
-    function setAction(action) {
-        nextAction = action;
-        if (!animating) { update(); }
-    }
+    
     
     function update() {
-        let percept = diagram.world.floors[diagram.world.location].dirty;
-        if (nextAction !== null) {
-            diagram.world.simulate(nextAction);
-            renderWorld(diagram);
-            renderAgentPercept(diagram, percept);
-            renderAgentAction(diagram, nextAction);
-            nextAction = null;
-            updateButtons();
-            animating = setTimeout(update, STEP_TIME_MS);
-        } else {
-            animating = false;
-            renderWorld(diagram);
-            renderAgentPercept(diagram, percept);
-            renderAgentAction(diagram, null);
-        }
-    }
+		let location = diagram.world.location;
+		let percept = diagram.world.floors[location].dirty;
+		let action = reflexVacuumAgent(diagram.world);
+		diagram.world.simulate(action);
+		renderWorld(diagram);
+		renderAgentPercept(diagram, percept);
+		renderAgentAction(diagram, action);
+	}
+	
+    setInterval(update, STEP_TIME_MS);
 }
 
 makeAgentControlledDiagram();

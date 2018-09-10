@@ -42,8 +42,8 @@ function reflexVacuumAgent(world) {
     if (world.floors[world.location].dirty) { return 'SUCK'; }
     else if (world.location == 0)           { return 'RIGHT'; }
     else if (world.location == 1)           { return 'DOWN'; }
-    else if (world.location == 2)           { return 'LEFT'; }
-    else if (world.location == 3)           { return 'UP'; }
+    else if (world.location == 3)           { return 'LEFT'; }
+    else if (world.location == 2)           { return 'UP'; }
 }
 
 // Rules are defined in data, in a table indexed by [location][dirty]
