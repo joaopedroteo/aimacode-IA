@@ -2,7 +2,7 @@
 // but in most problems the environment and world would be separate
 class World {
     constructor(numFloors) {
-        this.location = 0;
+        this.location = 2;
         this.floors = [];
         for (let i = 0; i < numFloors; i++) {
             this.floors.push({dirty: false});

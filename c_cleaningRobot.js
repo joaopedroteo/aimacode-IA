@@ -96,7 +96,7 @@ function renderAgentPercept(diagram, dirty) {
 }
 
 function renderAgentAction(diagram, action) {
-    let actionLabel = {null: 'Waiting', 'SUCK': 'Vacuuming', 'LEFT': 'Going left', 'RIGHT': 'Going right'}[action];
+    let actionLabel = {null: 'Waiting', 'SUCK': 'Vacuuming', 'LEFT': 'Going left', 'RIGHT': 'Going right', 'UP': 'Going up', 'DOWN': 'Going down'}[action];
     diagram.actionText.text(actionLabel);
 }
 
@@ -202,7 +202,8 @@ function makeReaderControlledDiagram() {
    UI that lets the reader view the percepts and actions being followed
    as well as change the rules followed by the agent. */
 function makeTableControlledDiagram() {
-    let diagram = makeDiagram('#table-controlled-diagram svg');
+    let diagram = makeDiagram('#meu-diagrama svg');
+
 
     function update() {
         let table = getRulesFromPage();
@@ -219,12 +220,17 @@ function makeTableControlledDiagram() {
     setInterval(update, STEP_TIME_MS);
     
     function getRulesFromPage() {
-        let table = d3.select("#table-controlled-diagram table");
-        let left_clean = table.select("[data-action=left-clean] select").node().value;
-        let left_dirty = table.select("[data-action=left-dirty] select").node().value;
-        let right_clean = table.select("[data-action=right-clean] select").node().value;
-        let right_dirty = table.select("[data-action=right-dirty] select").node().value;
-        return [[left_clean, left_dirty], [right_clean, right_dirty]];
+        let table = d3.select("#meu-diagrama table");
+        let left_up_clean = table.select("[data-action=left-up-clean] select").node().value;
+        let left_up_dirty = table.select("[data-action=left-up-dirty] select").node().value;
+        let left_down_clean = table.select("[data-action=left-down-clean] select").node().value;
+        let left_down_dirty = table.select("[data-action=left-down-dirty] select").node().value;
+        let right_up_clean = table.select("[data-action=right-up-clean] select").node().value;
+        let right_up_dirty = table.select("[data-action=right-up-dirty] select").node().value;
+        let right_down_clean = table.select("[data-action=right-down-clean] select").node().value;
+        let right_down_dirty = table.select("[data-action=right-down-dirty] select").node().value;
+        return [[left_up_clean, left_up_dirty], [right_up_clean, right_up_dirty], 
+                [left_down_clean, left_down_dirty], [right_down_clean, right_down_dirty]];
     }
 
     function showPerceptAndAction(location, percept, action) {
@@ -252,7 +258,7 @@ function makeTableControlledDiagram() {
 }
 
 function makeReaderControlledDiagram() {
-    let diagram = makeDiagram('#meu-diagrama svg');
+    let diagram = makeDiagram('#meumeu-diagrama svg');
     
     
     function update() {
