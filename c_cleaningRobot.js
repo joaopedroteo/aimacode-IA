@@ -51,7 +51,8 @@ function makeDiagram(selector) {
     diagram.actionText = diagram.robot.append('text')
         .attr('x', SIZE/2)
         .attr('y', -10)
-        .attr('text-anchor', 'middle');
+        .attr('text-anchor', 'middle')
+
 
     diagram.floors = [];
     for (let floorNumber = 0; floorNumber < world.floors.length; floorNumber++) {
